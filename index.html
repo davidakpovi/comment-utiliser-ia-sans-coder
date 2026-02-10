@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Comment utiliser l’IA sans coder — Livre audio</title>
+  <meta name="description" content="Le guide complet pour comprendre et utiliser l’intelligence artificielle au quotidien — sans compétences techniques. Livre audio." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Comment utiliser l’IA sans coder — Livre audio" />
+  <meta property="og:description" content="Écoutez et apprenez, à votre propre rythme, à utiliser l’IA dans votre vie personnelle et professionnelle." />
+  <meta property="og:image" content="assets/cover.jpg" />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#0b0f14;
+      --muted:#667085;
+      --muted2:#7b8798;
+      --line:#e7edf6;
+      --card:#f7fafc;
+      --shadow:0 14px 40px rgba(16,24,40,.08);
+      --shadow2:0 12px 28px rgba(16,24,40,.08);
+      --radius:22px;
+
+      /* Mint proche du visuel */
+      --mint:#78bfa6;
+      --mintDeep:#4d9c83;
+      --mintSoft:rgba(120,191,166,.14);
+      --mintLine:rgba(120,191,166,.35);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 500px at 50% -50%, rgba(120,191,166,.10), transparent 70%),
+        linear-gradient(180deg, #ffffff 0%, #fbfdff 60%, #ffffff 100%);
+    }
+    a{color:inherit}
+    .wrap{max-width:1180px;margin:0 auto;padding:26px 18px 64px}
+
+    /* Top bar */
+    .top{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+      margin-bottom:20px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;font-weight:800;
+    }
+    .dot{width:10px;height:10px;border-radius:999px;background:var(--mint)}
+    .chip{
+      font-size:14px;color:var(--muted);
+      padding:10px 14px;border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      box-shadow:0 8px 22px rgba(16,24,40,.04);
+    }
+
+    /* Main grid */
+    .grid{
+      display:grid;
+      grid-template-columns: 420px 1fr;
+      gap:28px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .cardPad{padding:22px}
+
+    /* Left: cover card */
+    .coverFrame{
+      background:linear-gradient(180deg, rgba(120,191,166,.08), rgba(120,191,166,.02));
+      padding:22px;
+    }
+    .coverImg{
+      width:100%;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:#fff;
+      display:block;
+      box-shadow:0 10px 30px rgba(16,24,40,.10);
+    }
+
+    .authorRow{
+      margin-top:18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      padding:14px 14px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:#fff;
+    }
+
+    .authorMeta{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width: 0;
+    }
+    .authorName{
+      font-size:18px;
+      font-weight:700;
+      line-height:1.2;
+    }
+    .authorRole{
+      font-size:14px;
+      color:var(--muted);
+      line-height:1.4;
+      white-space:nowrap;
+    }
+
+    .pill{
+      font-size:14px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:var(--mintSoft);
+      border:1px solid var(--mintLine);
+      color:#1f3b33;
+      white-space:nowrap;
+    }
+
+    /* ✅ NEW: badge “Consultant en IA” plus élégant (pas un bouton) */
+    .pill.role{
+      font-size:13px;
+      padding:9px 12px;
+      font-weight:700;
+      letter-spacing:.1px;
+      border-radius:999px;
+      background:rgba(120,191,166,.12);
+      border:1px solid rgba(120,191,166,.40);
+      color:#163128;
+      cursor:default;          /* important : pas “cliquable” */
+      user-select:none;
+    }
+
+    /* mobile : le badge passe en dessous si nécessaire, sans casser */
+    @media (max-width: 520px){
+      .pill.role{width:fit-content}
+    }
+
+    /* Right: content */
+    h1{
+      margin:0;
+      font-size:44px;
+      line-height:1.05;
+      letter-spacing:-.8px;
+    }
+    .ia{color:var(--mintDeep)}
+    .sub{
+      margin:14px 0 0;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.65;
+      max-width:74ch;
+    }
+
+    .quote{
+      margin:18px 0 0;
+      border-radius:18px;
+      border:1px solid rgba(120,191,166,.22);
+      background:linear-gradient(90deg, rgba(120,191,166,.18), rgba(120,191,166,.05));
+      padding:16px 16px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .quoteBar{
+      width:6px;border-radius:999px;background:var(--mint);
+      flex:0 0 auto;
+    }
+    .quoteText{
+      margin:0;
+      font-size:18px;
+      font-weight:750;
+      color:#162326;
+    }
+
+    /* Button grid */
+    .btnGrid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 700px){
+      .btnGrid{grid-template-columns:1fr}
+      h1{font-size:38px}
+    }
+
+    .btnCard{
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:#fff;
+      padding:16px 16px;
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      box-shadow:0 10px 22px rgba(16,24,40,.04);
+      transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .btnCard:hover{
+      transform:translateY(-1px);
+      border-color:#d7e2f0;
+      box-shadow:var(--shadow2);
+    }
+
+    .btnTitle{
+      margin:0;
+      font-size:18px;
+      font-weight:850;
+    }
+    .btnDesc{
+      margin:6px 0 0;
+      color:var(--muted2);
+      font-size:15px;
+      line-height:1.35;
+    }
+    .badge{
+      font-size:14px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--mintLine);
+      background:rgba(120,191,166,.10);
+      color:#1f3b33;
+      white-space:nowrap;
+    }
+    .badge.paper{
+      border-color:rgba(102,112,133,.25);
+      background:rgba(102,112,133,.10);
+      color:#2b3340;
+    }
+
+    /* Contact block */
+    .contactBox{
+      margin-top:18px;
+      border-radius:18px;
+      border:1px solid rgba(120,191,166,.22);
+      background:linear-gradient(90deg, rgba(120,191,166,.10), rgba(120,191,166,.03));
+      padding:16px 16px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .contactBox h3{
+      margin:0;
+      font-size:18px;
+      font-weight:850;
+      color:#162326;
+    }
+    .contactBox p{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.55;
+      max-width:78ch;
+    }
+    .contactBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      white-space:nowrap;
+      padding:12px 14px;
+      border-radius:999px;
+      border:1px solid var(--mintLine);
+      background:rgba(120,191,166,.16);
+      color:#163128;
+      font-weight:900;
+      text-decoration:none;
+    }
+    .contactBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      white-space:nowrap;
+      padding:12px 14px;
+      border-radius:999px;
+      border:1px solid var(--mintLine);
+      background:rgba(120,191,166,.16);
+      color:#163128;
+      font-weight:900;
+      text-decoration:none;
+      transition: 
+        transform .08s ease,
+        box-shadow .12s ease,
+        background-color .12s ease,
+        border-color .12s ease;
+    }
+
+.contactBtn:hover{
+  transform: translateY(-1px);
+  background: rgba(120,191,166,.22);
+  border-color: rgba(120,191,166,.55);
+  box-shadow: 0 12px 24px rgba(16,24,40,.10);
+}
+
+.contactBtn:active{
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(16,24,40,.08);
+}
+
+.contactBtn:focus-visible{
+  outline: 3px solid rgba(120,191,166,.35);
+  outline-offset: 3px;
+}
+
+
+    /* Footer row */
+    .foot{
+      margin-top:22px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .foot a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+
+    /* Consent banner */
+    .consent{
+      position:fixed;
+      left:14px; right:14px; bottom:14px;
+      max-width:1180px;
+      margin:0 auto;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:14px 14px;
+      display:none;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .consent p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.4;
+      max-width:78ch;
+    }
+    .consent .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .cbtn{
+      cursor:pointer;
+      border-radius:999px;
+      padding:10px 14px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-weight:800;
+      font-size:13px;
+    }
+    .cbtn.primary{
+      border-color:var(--mintLine);
+      background:rgba(120,191,166,.18);
+      color:#163128;
+    }
+  </style>
+
+  <!-- GA4 Consent Mode: default denied -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied'
+    });
+  </script>
+
+  <!-- GA4 tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB93GB3VPQ"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-LB93GB3VPQ', { anonymize_ip: true });
+  </script>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="top">
+      <div class="brand"><span class="dot"></span> Livre audio</div>
+      <div class="chip">Comment utiliser l’IA sans coder</div>
+    </div>
+
+    <div class="grid">
+
+      <!-- LEFT -->
+      <div class="card">
+        <div class="coverFrame">
+          <img class="coverImg" src="assets/cover.jpg" alt="Couverture du livre audio Comment utiliser l’IA sans coder">
+        </div>
+
+        <div class="cardPad">
+          <div class="authorRow">
+            <div class="authorMeta">
+              <div class="authorName">David Akpovi</div>
+              <div class="authorRole">Auteur</div>
+            </div>
+
+            <!-- ✅ badge élégant -->
+            <div class="pill role">Accompagnement en IA</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="card">
+        <div class="cardPad">
+          <h1>Comment utiliser <span class="ia">l’IA</span> sans coder</h1>
+          <p class="sub">
+            Le guide complet pour comprendre et utiliser l’intelligence artificielle au quotidien — sans compétences techniques.
+            Écoutez et appliquez, étape par étape.
+          </p>
+
+          <div class="quote">
+            <div class="quoteBar"></div>
+            <p class="quoteText">“Écoutez et apprenez, à votre propre rythme, à utiliser l’IA dans votre vie personnelle et professionnelle.”</p>
+          </div>
+
+          <div class="btnGrid" aria-label="Liens vers les plateformes">
+
+            <!-- Spotify -->
+            <a class="btnCard track"
+               href="https://open.spotify.com/show/3nbFhmxTn1VJFfg9yzoR8n?si=iYBng47_TQSnzfAlQTI15Q"
+               target="_blank" rel="noopener"
+               data-platform="Spotify"
+               data-link-id="spotify_audio_primary">
+              <div>
+                <p class="btnTitle">Écoutez sur Spotify</p>
+                <p class="btnDesc">Disponible sur Spotify, comme votre musique</p>
+              </div>
+              <div class="badge">Spotify</div>
+            </a>
+
+            <!-- Apple Books -->
+            <a class="btnCard track"
+               href="https://books.apple.com/us/audiobook/comment-utiliser-lia-sans-coder-le-guide-complet-pour/id1860534565"
+               target="_blank" rel="noopener"
+               data-platform="AppleBooks"
+               data-link-id="apple_audio_primary">
+              <div>
+                <p class="btnTitle">Écoutez sur Apple Books</p>
+                <p class="btnDesc">Parfait pour iPhone / iPad</p>
+              </div>
+              <div class="badge">Apple</div>
+            </a>
+
+            <!-- FNAC (audio) -->
+            <a class="btnCard track"
+               href="https://www.fnac.com/livre-numerique/a22447050/David-Akpovi-Comment-Utiliser-l-IA-Sans-Coder"
+               target="_blank" rel="noopener"
+               data-platform="FNAC_Audio"
+               data-link-id="fnac_audio_primary">
+              <div>
+                <p class="btnTitle">Écoutez sur FNAC</p>
+                <p class="btnDesc">Écoutez-le sur FNAC, à votre rythme</p>
+              </div>
+              <div class="badge">FNAC</div>
+            </a>
+
+            <!-- Amazon (paper) -->
+            <a class="btnCard track"
+               href="https://www.amazon.fr/dp/B0G3WVYSS4"
+               target="_blank" rel="noopener"
+               data-platform="Amazon_Print"
+               data-link-id="amazon_paper_primary">
+              <div>
+                <p class="btnTitle">Achetez le livre papier sur Amazon</p>
+                <p class="btnDesc">Version imprimée du guide</p>
+              </div>
+              <div class="badge paper">Papier</div>
+            </a>
+
+          </div>
+
+          <!-- Contact section -->
+          <div class="contactBox" aria-label="Contact">
+            <div>
+              <h3>Vous souhaitez aller plus loin ?</h3>
+              <p>
+                Si vous souhaitez une formation personnalisée sur l’IA, ou simplement en savoir plus avant de vous lancer,
+                vous pouvez me contacter directement.
+              </p>
+            </div>
+
+            <a class="contactBtn track"
+               href="mailto:davidakpovi@gmail.com?subject=Formation%20IA%20personnalis%C3%A9e%20—%20Demande%20d%E2%80%99infos&body=Bonjour%20David%2C%0A%0AJe%20souhaite%20une%20formation%20personnalis%C3%A9e%20sur%20l%E2%80%99IA%20(ou%20j%E2%80%99ai%20des%20questions).%0A%0AMon%20objectif%20%3A%20%5B%E2%80%A6%5D%0AMon%20niveau%20%3A%20%5B%E2%80%A6%5D%0AMes%20besoins%20%3A%20%5B%E2%80%A6%5D%0A%0AMerci%20%21"
+               data-platform="Email"
+               data-link-id="contact_email_primary">
+              Me contacter par email
+            </a>
+          </div>
+
+          <div class="foot">
+            <div>© <span id="year"></span> David Akpovi</div>
+            <div style="display:flex;gap:16px;flex-wrap:wrap">
+              <a href="privacy.html">Confidentialité</a>
+              <a href="#" id="manage-consent">Gérer le consentement</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Consent banner -->
+  <div class="consent" id="consent">
+    <p>
+      Ce site utilise Google Analytics pour mesurer les visites et les clics vers Spotify, Apple Books, FNAC et Amazon.
+      <a href="privacy.html">En savoir plus</a>.
+    </p>
+    <div class="actions">
+      <button class="cbtn" id="deny">Refuser</button>
+      <button class="cbtn primary" id="accept">Accepter</button>
+    </div>
+  </div>
+
+  <script>
+    // ---------- Basics ----------
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ---------- Consent ----------
+    const CONSENT_KEY = "ga4_consent_v1"; // 'granted' | 'denied'
+    const banner = document.getElementById("consent");
+
+    function applyConsent(value){
+      if (value === "granted") {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      } else {
+        gtag('consent', 'update', { 'analytics_storage': 'denied' });
+      }
+    }
+
+    function setConsent(value){
+      localStorage.setItem(CONSENT_KEY, value);
+      applyConsent(value);
+      banner.style.display = "none";
+      gtag('event', value === "granted" ? 'consent_granted' : 'consent_denied', { method: 'banner' });
+    }
+
+    const saved = localStorage.getItem(CONSENT_KEY);
+    if (!saved) {
+      banner.style.display = "flex";
+    } else {
+      applyConsent(saved);
+    }
+
+    document.getElementById("accept").addEventListener("click", ()=>setConsent("granted"));
+    document.getElementById("deny").addEventListener("click", ()=>setConsent("denied"));
+    document.getElementById("manage-consent").addEventListener("click", (e)=>{
+      e.preventDefault();
+      banner.style.display = "flex";
+    });
+
+    // ---------- Outbound click tracking (CTR) ----------
+    document.querySelectorAll("a.track").forEach(a=>{
+      a.addEventListener("click", ()=>{
+        gtag('event', 'outbound_click', {
+          platform: a.dataset.platform || "Unknown",
+          link_id: a.dataset.linkId || "unknown_link",
+          destination: a.href
+        });
+      });
+    });
+  </script>
+</body>
+</html>
