@@ -87,6 +87,7 @@
     }
     .coverImg{
       width:100%;
+      height:auto;
       border-radius:18px;
       border:1px solid var(--line);
       background:#fff;
@@ -125,34 +126,9 @@
       white-space:nowrap;
     }
 
-    .pill{
-      font-size:14px;
-      padding:10px 14px;
-      border-radius:999px;
-      background:var(--mintSoft);
-      border:1px solid var(--mintLine);
-      color:#1f3b33;
-      white-space:nowrap;
-    }
-
-    /* ✅ NEW: badge “Consultant en IA” plus élégant (pas un bouton) */
-    .pill.role{
-      font-size:13px;
-      padding:9px 12px;
-      font-weight:700;
-      letter-spacing:.1px;
-      border-radius:999px;
-      background:rgba(120,191,166,.12);
-      border:1px solid rgba(120,191,166,.40);
-      color:#163128;
-      cursor:default;          /* important : pas “cliquable” */
-      user-select:none;
-    }
-
-    /* mobile : le badge passe en dessous si nécessaire, sans casser */
-    @media (max-width: 520px){
-      .pill.role{width:fit-content}
-    }
+    /* ✅ Même vert que le titre, uniquement sur "IA" */
+    .ia{color:var(--mintDeep)}
+    .authorRole .ia{font-weight:600;}
 
     /* Right: content */
     h1{
@@ -161,7 +137,6 @@
       line-height:1.05;
       letter-spacing:-.8px;
     }
-    .ia{color:var(--mintDeep)}
     .sub{
       margin:14px 0 0;
       color:var(--muted);
@@ -274,6 +249,8 @@
       line-height:1.55;
       max-width:78ch;
     }
+
+    /* ✅ contact button + hover */
     .contactBtn{
       display:inline-flex;
       align-items:center;
@@ -287,44 +264,26 @@
       color:#163128;
       font-weight:900;
       text-decoration:none;
-    }
-    .contactBtn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      white-space:nowrap;
-      padding:12px 14px;
-      border-radius:999px;
-      border:1px solid var(--mintLine);
-      background:rgba(120,191,166,.16);
-      color:#163128;
-      font-weight:900;
-      text-decoration:none;
-      transition: 
+      transition:
         transform .08s ease,
         box-shadow .12s ease,
         background-color .12s ease,
         border-color .12s ease;
     }
-
-.contactBtn:hover{
-  transform: translateY(-1px);
-  background: rgba(120,191,166,.22);
-  border-color: rgba(120,191,166,.55);
-  box-shadow: 0 12px 24px rgba(16,24,40,.10);
-}
-
-.contactBtn:active{
-  transform: translateY(0);
-  box-shadow: 0 8px 18px rgba(16,24,40,.08);
-}
-
-.contactBtn:focus-visible{
-  outline: 3px solid rgba(120,191,166,.35);
-  outline-offset: 3px;
-}
-
+    .contactBtn:hover{
+      transform: translateY(-1px);
+      background: rgba(120,191,166,.22);
+      border-color: rgba(120,191,166,.55);
+      box-shadow: 0 12px 24px rgba(16,24,40,.10);
+    }
+    .contactBtn:active{
+      transform: translateY(0);
+      box-shadow: 0 8px 18px rgba(16,24,40,.08);
+    }
+    .contactBtn:focus-visible{
+      outline: 3px solid rgba(120,191,166,.35);
+      outline-offset: 3px;
+    }
 
     /* Footer row */
     .foot{
@@ -379,6 +338,17 @@
       background:rgba(120,191,166,.18);
       color:#163128;
     }
+
+    /* ✅ CORRECTION MOBILE : cover moins envahissante + moins d'espace sous l'image */
+    @media (max-width: 700px){
+      .coverFrame{ padding-bottom:12px; }
+      .authorRow{ margin-top:12px; }
+
+      .coverImg{
+        max-height:420px;
+        object-fit:contain;
+      }
+    }
   </style>
 
   <!-- GA4 Consent Mode: default denied -->
@@ -419,11 +389,8 @@
           <div class="authorRow">
             <div class="authorMeta">
               <div class="authorName">David Akpovi</div>
-              <div class="authorRole">Auteur</div>
+              <div class="authorRole">Auteur · Accompagnement en <span class="ia">IA</span></div>
             </div>
-
-            <!-- ✅ badge élégant -->
-            <div class="pill role">Accompagnement en IA</div>
           </div>
         </div>
       </div>
@@ -433,17 +400,16 @@
         <div class="cardPad">
           <h1>Comment utiliser <span class="ia">l’IA</span> sans coder</h1>
           <p class="sub">
-            Le guide complet pour comprendre et utiliser l’intelligence artificielle au quotidien — sans compétences techniques.
-            Écoutez et appliquez, étape par étape.
+            Le guide complet pour comprendre et utiliser l’intelligence artificielle au quotidien, même sans disposer de compétences techniques préalables.
+            <br>Écoutez, appliquez, et progressez étape par étape. 
           </p>
 
           <div class="quote">
             <div class="quoteBar"></div>
-            <p class="quoteText">“Écoutez et apprenez, à votre propre rythme, à utiliser l’IA dans votre vie personnelle et professionnelle.”</p>
+            <p class="quoteText">“Écoutez et apprenez, à votre propre rythme, à utiliser l’Intelligence Artificielle dans votre vie personnelle et professionnelle.”</p>
           </div>
 
           <div class="btnGrid" aria-label="Liens vers les plateformes">
-
             <!-- Spotify -->
             <a class="btnCard track"
                href="https://open.spotify.com/show/3nbFhmxTn1VJFfg9yzoR8n?si=iYBng47_TQSnzfAlQTI15Q"
@@ -495,7 +461,6 @@
               </div>
               <div class="badge paper">Papier</div>
             </a>
-
           </div>
 
           <!-- Contact section -->
@@ -533,7 +498,7 @@
   <!-- Consent banner -->
   <div class="consent" id="consent">
     <p>
-      Ce site utilise Google Analytics pour mesurer les visites et les clics vers Spotify, Apple Books, FNAC et Amazon.
+      Ce site utilise Google Analytics afin de mesurer l’audience et l’utilisation du site.
       <a href="privacy.html">En savoir plus</a>.
     </p>
     <div class="actions">
@@ -543,11 +508,9 @@
   </div>
 
   <script>
-    // ---------- Basics ----------
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // ---------- Consent ----------
-    const CONSENT_KEY = "ga4_consent_v1"; // 'granted' | 'denied'
+    const CONSENT_KEY = "ga4_consent_v1";
     const banner = document.getElementById("consent");
 
     function applyConsent(value){
@@ -579,7 +542,6 @@
       banner.style.display = "flex";
     });
 
-    // ---------- Outbound click tracking (CTR) ----------
     document.querySelectorAll("a.track").forEach(a=>{
       a.addEventListener("click", ()=>{
         gtag('event', 'outbound_click', {
